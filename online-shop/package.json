@@ -31,7 +31,7 @@
       ">0.2%",
       "not dead",
       "not op_mini all",
-      "not ie <= 10"
+      "not ie <= 11"
     ],
     "development": [
       "last 1 chrome version",

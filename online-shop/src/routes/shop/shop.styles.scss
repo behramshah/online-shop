@@ -1,8 +1,0 @@
-.products-container {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: repeat(4, 1fr);
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 10px;
-    row-gap: 50px;
-}

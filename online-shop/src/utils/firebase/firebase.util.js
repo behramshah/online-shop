@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import { 
     getAuth,
@@ -64,8 +63,7 @@ export const getCategoriesAndDocuments = async () => {
     const q = query(collectionRef);    
 
     const querySnapshot = await getDocs(q);
-    return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
-    
+    return querySnapshot.docs.map(docSnapshot => docSnapshot.data());    
 };
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation) => {

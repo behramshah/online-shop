@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import FormInput from '../form-input/form-input.component';
 import Button, {BUTTON_TYPE_CLASSES} from '../button/button.component';
-import { signInWithGooglePopup, signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.util';
 import { SignInContainer, ButtonsContainer } from './sign-in-form.styles';
+import { googleSignInStart, emailSignInStart } from '../../store/user/user.actions'
 
 
 
@@ -15,11 +16,12 @@ const SignInForm = () => {
 
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password} = formFields;
+    const dispatch = useDispatch();
 
     const resetFormFields = () => setFormFields(defaultFormFields);
 
     const signInWithGoogle = async () => {
-        await signInWithGooglePopup();
+        dispatch(googleSignInStart());
     };
 
     const handleChange = (event) => {
@@ -31,7 +33,7 @@ const SignInForm = () => {
         event.preventDefault();
         
         try {
-            const { user } = await signInAuthUserWithEmailAndPassword(email, password);
+            dispatch(emailSignInStart(email, password));
             resetFormFields();                
         } catch (error) {
             switch (error.code){
@@ -42,7 +44,6 @@ const SignInForm = () => {
                     alert('no user associated with this email');
                     break;
                 default: console.log(error);
-
             }            
         }
     };
